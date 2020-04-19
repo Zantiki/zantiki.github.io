@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: src.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: src.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+
+
+const net = require("net");
+const crypto = require("crypto");
+
+/**
+ * Class describing coordinator, part of two-phase commit.
+ */
+class Coordinator {
+    /**
+     * Active connections to the server
+     * @type {Array}
+     */
+    clients = [];
+    /**
+     * Array of connections to keep track of votes and ACK-messages
+     * @type {Array}
+     */
+    tempClients = [];
+    /**
+     * The absolute global value of the system.
+     */
+    globalValue = 1;
+    /**
+     * Store a wanted commit value throughout the commit process
+     */
+    tempValue;
+    /**
+     * Keeps track of whether a commit was successful
+     */
+    wasSuccess = false;
+    /**
+     * Port to listen for connections
+     */
+    PORT = 3001;
+    /**
+     * Net server-object
+     */
+    server;
+
+    constructor(){
+        this.server = net.createServer(conn => {
+            console.log("Client connected");
+
+            conn.on("data", data => {
+                console.log('Data from client:\n' + data.toString());
+
+                //Check if get, and do handshake
+                if (data.toString()[0] == "G") {
+                    let key = data.toString().substring(data.toString().indexOf("-Key: ") + 6,data.toString().indexOf("==") + 2);
+                    let acceptValue = this.generateAcceptValue(key);
+
+                    const responseHeaders = [
+                        "HTTP/1.1 101 Web Socket Protocol Handshake",
+                        "Upgrade: websocket",
+                        "Connection: Upgrade",
+                        "Sec-WebSocket-Accept:" + acceptValue
+                    ];
+                    //Send handshake-res to client
+                    conn.write(responseHeaders.join("\r\n") + "\r\n\r\n");
+                    conn.write(this.encode({GLOBAL_VALUE: this.globalValue}));
+                    this.clients.push(conn);
+                } else {
+                    try{
+                        data = JSON.parse(this.decode(data));
+                    }catch(err){
+                        console.log(conn);
+                        const index = this.clients.indexOf(conn);
+                        if (index > -1) {
+                            this.tempClients.splice(index, 1);
+                        }
+                        //conn.ws.close();
+                    }
+                    if(data.COMMIT != undefined){
+                        this.tempClients = [...this.clients];
+                        this.tempValue = data.COMMIT;
+                        this.notifyAll({SETUP: data.COMMIT})
+                    }else if(data.VOTE){
+                        if(data.VOTE === "YES"){
+                            console.log("Got vote");
+                            const index = this.tempClients.indexOf(conn);
+                            if (index > -1) {
+                                this.tempClients.splice(index, 1);
+                            }
+                        }else{
+                            console.log("vote failure");
+                            this.notifyAll({SUCCESS: false})
+                        }
+
+                        if(this.tempClients.length == 0){
+                            console.log("vote success");
+                            this.wasSuccess  = true;
+                            this.tempClients = [...this.clients];
+                            this.notifyAll({SUCCESS: true})
+                        }
+                    }else if(data.ACK){
+                        console.log("Got ACK Success");
+                        const index = this.tempClients.indexOf(conn);
+                        if (index > -1) {
+                            this.tempClients.splice(index, 1);
+                        }
+                        if(this.tempClients.length === 0 &amp;&amp; this.wasSuccess){
+                            console.log("transaction successful");
+                            this.globalValue = this.tempValue;
+                            this.wasSuccess = false;
+                        }else if(this.tempClients.length === 0){
+                            console.log("Transaction failure");
+                        }
+                    }
+
+                }
+            });
+
+            conn.on("end", () => {
+                console.log("Client disconnected");
+                const index = this.clients.indexOf(conn);
+                if (index > -1) {
+                    this.clients.splice(index, 1);
+                }
+            });
+        });
+
+        this.server.on("error", error => {
+            console.error("Error: ", error);
+        });
+
+        this.server.listen(3001, () => {
+            console.log("WebSocket server listening on port "+ 3001 );
+        });
+    }
+
+    /**
+     * Generate accept value in accordance to Websocket protocol.
+     *
+     * @param: {String} acceptKey
+     * @return: {String} acceptValue
+     */
+    generateAcceptValue = acceptKey =>
+        crypto
+            .createHash("sha1")
+            .update(acceptKey + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11")
+            .digest("base64");
+
+
+
+    /**
+     *Decode a given char-code
+     *
+     * @param: {String} data - message to decode
+     * @return: {String} message - the decoded message
+     */
+    decode (data){
+        let message = "";
+        let length = data[1] &amp; 127;
+        let maskStart = 2;
+        let dataStart = maskStart + 4;
+
+        for (let i = dataStart; i &lt; dataStart + length; i++) {
+            let byte = data[i] ^ data[maskStart + ((i - dataStart) % 4)];
+            message += String.fromCharCode(byte);
+        }
+        console.log("Message reads: "+message);
+        return message;
+    }
+
+    /**
+     *Encode a given JSON message
+     *
+     * @param: {JSON} message - message to encode
+     * @return: {Buffer} buffer - message encoded as buffer
+     */
+    encode(message){
+        let msg = JSON.stringify(message);
+        let buffer = Buffer.concat([
+            new Buffer.from([
+                0x81,
+                "0x" +
+                (msg.length + 0x10000)
+                    .toString(16)
+                    .substr(-2)
+                    .toUpperCase()
+            ]),
+            Buffer.from(msg)
+        ]);
+        return buffer;
+    }
+    /**
+     * Sends a message to alle the clients in the client array
+     * removes faulty connections
+     *
+     * @param: {JSON} msg - message to send to clients
+     */
+    notifyAll(msg){
+        let message = encode(msg);
+        console.log(clients.length);
+        clients.forEach(client => {
+            try{
+                client.write(message);
+            }catch{
+                console.log("An error occured");
+                const index = clients.indexOf(client);
+                if (client > -1) {
+                    clients.splice(index, 1);
+                }
+                client.terminate();
+            }
+        });
+    }
+}
+/**
+ * Class representing a log, containing forwards and backwards changes,
+ * as well as system events.
+ */
+class Log{
+    /**
+     * Undo log, part of two-phase commit
+     * @type {Array}
+     */
+    undo = [];
+    /**
+     * Redo log, part of two-phase commit
+     * @type {Array}
+     */
+    redo = [];
+    /**
+     * Eventlog to use client side.
+     * @type {Array}
+     */
+    eventLog = [];
+
+    /**Appends an action to the undo log*/
+    addUndo(action){
+        this.undo.push(action);
+    }
+    /**Appends an action to the redo log*/
+    addRedo(action){
+        this.redo.push(action);
+    }
+
+    /**Appends an action to the event log*/
+    addEvent(ev){
+        this.eventLog.push(ev);
+    }
+}
+
+/**
+ * Class describing a participant entity,
+ * contains a websocket and log object.
+ */
+export class Participant {
+    /**
+     * Refrence to coordinator global-value
+     */
+    globalValue;
+    /**
+     * Local value to commit, changeable through onValue method.
+     */
+    localValue = 0;
+    /**
+     * Log object containing undo, redo and eventlog.
+     */
+    participantLog = new Log();
+    /**
+     * Websocket for server communication
+     */
+    ws;
+    /**
+     * Boolean value for checking if participant
+     * is responsible for current commit.
+     */
+    isInitialiser = false;
+
+    /**Represents a participant
+     * @constructor
+     */
+    constructor(){
+        this.ws = new WebSocket('ws://localhost:3001');
+        this.setSocketHandlers();
+    }
+
+    /**Sends the value to commit to coordinator.*/
+    commit(newValue){
+        this.isInitialiser = true;
+        console.log(newValue);
+        this.ws.send(JSON.stringify({COMMIT: newValue}));
+    }
+
+    /**Appends a string to the eventlog and calls theoverridable onLog method.*/
+    commitError(){
+        console.log("Error");
+        this.ws.send(JSON.stringify({VOTE: "NO"}));
+        this.log("Error occurred, voted no");
+    }
+
+    /**Appends a string to the eventlog and calls the overridable onLog method.*/
+
+    log(log){
+        this.participantLog.addEvent(log);
+        this.onLog();
+    }
+
+    /**Resets the websocket and socket handlers.*/
+
+    reconnect(){
+        console.log("Closing socket");
+        setTimeout(() => {
+            this.ws = new WebSocket('ws://localhost:3001');
+            this.setSocketHandlers();
+        }, 1500);
+    }
+
+
+    /**
+     * helper method that sets all the necessary handler methods to the globally scoped
+     * websocket.
+     */
+
+    setSocketHandlers(){
+        this.ws.onopen = event => {
+            this.log("Connected to coordinator");
+        };
+
+        this.ws.onclose = ()  => {
+            //this.ws = new WebSocket('ws://localhost:3001');
+            this.log("Disconnected");
+        };
+
+        this.ws.onerror = event => {
+            this.log("Socket error");
+        }
+        this.ws.onmessage = event => {
+            console.log(event.data);
+            let data = JSON.parse(event.data);
+
+            //Set global value on connect
+            console.log(data);
+            if(data.GLOBAL_VALUE !== undefined){
+                this.globalValue = data.GLOBAL_VALUE;
+                this.localValue = data.GLOBAL_VALUE;
+                this.participantLog.addUndo(this.globalValue);
+                this.onNewValue();
+            }
+
+
+            if(data.SETUP != undefined){
+                this.log("Setting up...");
+                this.participantLog.addUndo(this.globalValue);
+                this.participantLog.addRedo(data.SETUP);
+                if(this.localValue !== this.globalValue &amp;&amp; !this.isInitialiser) {
+                    this.commitError();
+                    this.log("Local variable not synced")
+                }else{
+                    console.log("Setup");
+                    try{
+                        this.globalValue = data.SETUP;
+                        this.ws.send(JSON.stringify({VOTE: "YES"}));
+                        this.log("Set up successful, voted yes");
+                        console.log("Vote");
+                    }catch (e) {
+                        this.ws.send(JSON.stringify({VOTE: "NO"}));
+                        this.log("Error occurred, voted no");
+                    }
+                }
+            }else if(data.SUCCESS === false){
+                this.globalValue = this.participantLog.undo[this.participantLog.undo.length-1];
+                this.localValue = this.participantLog.undo[this.participantLog.undo.length-1];
+
+                console.log(this.participantLog.undo);
+                this.onNewValue();
+                this.ws.send(JSON.stringify({ACK: true}));
+                this.log("Commit failed");
+                this.isInitialiser = false;
+            } else if(data.SUCCESS) {
+                this.ws.send(JSON.stringify({ACK: true}));
+                this.isInitialiser = false;
+                this.localValue = this.globalValue;
+                this.log("Commit successful");
+                this.onNewValue();
+                console.log("success");
+                console.log("Current value: "+this.globalValue);
+            }
+        };
+    }
+
+    /**
+     * Overridable method that can be implemented in react component.
+     */
+    onLog;
+    /**
+     * Overridable method that can be implemented in react component.
+     */
+    onNewValue;
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Coordinator.html">Coordinator</a></li><li><a href="Log.html">Log</a></li><li><a href="Participant.html">Participant</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sun Apr 19 2020 13:54:44 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
