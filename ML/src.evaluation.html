@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>src.evaluation package &#8212; Stocks 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="src-evaluation-package">
+<h1>src.evaluation package<a class="headerlink" href="#src-evaluation-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.evaluation.model_evaluation">
+<span id="src-evaluation-model-evaluation-module"></span><h2>src.evaluation.model_evaluation module<a class="headerlink" href="#module-src.evaluation.model_evaluation" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.evaluation.model_evaluation.accuracy_v_data_points">
+<code class="sig-prename descclassname">src.evaluation.model_evaluation.</code><code class="sig-name descname">accuracy_v_data_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_tables</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">order</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">lookback</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">lookback_roof</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.model_evaluation.accuracy_v_data_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a mpl-plot comparing the accuracy against the size of the total dataset for CNN and GRU.
+Returns a latex-figure string using the plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_tables</strong> – The different pd.DataFrames based on each model-result</p></li>
+<li><p><strong>order</strong> – A list of string describing the type model at each index in the data_tables parameter</p></li>
+<li><p><strong>lookback</strong> – The lookback used when querying the dataframes</p></li>
+<li><p><strong>lookback_roof</strong> – The lookback_roof used when querying the dataframes</p></li>
+<li><p><strong>features</strong> – The feature-string used when querying the dataframes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Latex figure of the generated plot as a string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.model_evaluation.accuracy_v_epochs">
+<code class="sig-prename descclassname">src.evaluation.model_evaluation.</code><code class="sig-name descname">accuracy_v_epochs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_tables</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">order</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">lookback</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">lookback_roof</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_points</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#src.evaluation.model_evaluation.accuracy_v_epochs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a mpl-plot comparing the accuracy against number of epochs for CNN and GRU. Retruns a latex-string
+as a figure using the plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_tables</strong> – The different pd.DataFrames based on each model-result</p></li>
+<li><p><strong>order</strong> – A list of string describing the type model at each index in the data_tables parameter</p></li>
+<li><p><strong>lookback</strong> – The lookback used when querying the dataframes</p></li>
+<li><p><strong>lookback_roof</strong> – The lookback_roof used when querying the dataframes</p></li>
+<li><p><strong>features</strong> – The feature-string used when querying the dataframes</p></li>
+<li><p><strong>data_points</strong> – The number of datapoints used when querying the dataframes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Latex figure of the generated plot as a string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.model_evaluation.accuracy_v_included_features">
+<code class="sig-prename descclassname">src.evaluation.model_evaluation.</code><code class="sig-name descname">accuracy_v_included_features</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_tables</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">order</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">lookback</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">lookback_roof</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">data_points</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.model_evaluation.accuracy_v_included_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a mpl-plot comparing the accuracy against the types of included fetures for CNN and GRU.
+Retruns a latex-string as a figure using the plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_tables</strong> – The different pd.DataFrames based on each model-result</p></li>
+<li><p><strong>order</strong> – A list of string describing the type model at each index in the data_tables parameter</p></li>
+<li><p><strong>lookback</strong> – The lookback used when querying the dataframes</p></li>
+<li><p><strong>lookback_roof</strong> – The lookback_roof used when querying the dataframes</p></li>
+<li><p><strong>data_points</strong> – The number of datapoints used when querying the dataframes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Latex figure of the generated plot as a string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.model_evaluation.accuracy_v_lookback">
+<code class="sig-prename descclassname">src.evaluation.model_evaluation.</code><code class="sig-name descname">accuracy_v_lookback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_tables</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">order</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_points</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#src.evaluation.model_evaluation.accuracy_v_lookback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a mpl-plot and return in the form of a latex-figure-string using the generated plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_tables</strong> – The different pd.DataFrames based on each model-result</p></li>
+<li><p><strong>order</strong> – A list of string describing the type model at each index in the data_tables parameter</p></li>
+<li><p><strong>features</strong> – The feature-string used when querying the dataframes</p></li>
+<li><p><strong>data_points</strong> – The number of datapoints used when querying the dataframes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Latex figure of the generated plot as a string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.model_evaluation.accuracy_v_lookback_roof">
+<code class="sig-prename descclassname">src.evaluation.model_evaluation.</code><code class="sig-name descname">accuracy_v_lookback_roof</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_tables</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">order</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">lookback</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">data_points</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#src.evaluation.model_evaluation.accuracy_v_lookback_roof" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a mpl-plot of the lookback_roof and return in the form of a latex-figure-string using the generated plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_tables</strong> – The different pd.DataFrames based on each model-result</p></li>
+<li><p><strong>order</strong> – A list of string describing the type model at each index in the data_tables parameter</p></li>
+<li><p><strong>features</strong> – The feature-string used when querying the dataframes</p></li>
+<li><p><strong>lookback</strong> – The lookback used when querying the dataframes</p></li>
+<li><p><strong>data_points</strong> – The number of datapoints used when querying the dataframes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Latex figure of the generated plot as a string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.model_evaluation.accuracy_v_models">
+<code class="sig-prename descclassname">src.evaluation.model_evaluation.</code><code class="sig-name descname">accuracy_v_models</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_tables</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">order</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">lookback</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">lookback_roof</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_points</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#src.evaluation.model_evaluation.accuracy_v_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a latex table comparing accuracy and runtime of each model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_tables</strong> – The different pd.DataFrames based on each model-result</p></li>
+<li><p><strong>order</strong> – A list of string describing the type model at each index in the data_tables parameter</p></li>
+<li><p><strong>lookback</strong> – The lookback used when querying the dataframes</p></li>
+<li><p><strong>lookback_roof</strong> – The lookback_roof used when querying the dataframes</p></li>
+<li><p><strong>features</strong> – The feature-string used when querying the dataframes</p></li>
+<li><p><strong>data_points</strong> – The number of datapoints used when querying the dataframes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Latex table of the comparison</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.model_evaluation.accuracy_v_rf_states">
+<code class="sig-prename descclassname">src.evaluation.model_evaluation.</code><code class="sig-name descname">accuracy_v_rf_states</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em>, <em class="sig-param"><span class="n">lookback</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">lookback_roof</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_points</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#src.evaluation.model_evaluation.accuracy_v_rf_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a mpl-plot for RF based on number of states and return in the form of a
+latex-figure-string using the generated plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – The RF-Dataframe</p></li>
+<li><p><strong>lookback</strong> – the lookback used when querying the dataframe</p></li>
+<li><p><strong>lookback_roof</strong> – the lookback_roof used when querying the dataframe</p></li>
+<li><p><strong>features</strong> – The feature-string used when querying the dataframe</p></li>
+<li><p><strong>data_points</strong> – The number of datapoints used when querying the dataframe</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Latex figure of the generated plot as a string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.model_evaluation.figure_string">
+<code class="sig-prename descclassname">src.evaluation.model_evaluation.</code><code class="sig-name descname">figure_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span></em>, <em class="sig-param"><span class="n">label</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.model_evaluation.figure_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.model_evaluation.get_results_json">
+<code class="sig-prename descclassname">src.evaluation.model_evaluation.</code><code class="sig-name descname">get_results_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#src.evaluation.model_evaluation.get_results_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the data inside the results.json</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>data, a the results json as a dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.model_evaluation.process_data">
+<code class="sig-prename descclassname">src.evaluation.model_evaluation.</code><code class="sig-name descname">process_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">raw_data</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#src.evaluation.model_evaluation.process_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate tables and plots based on the results.json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>raw_data</strong> – the results.json in dict-format</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list of the generated latex-tables/figures as strings</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.evaluation.profit_evaluation">
+<span id="src-evaluation-profit-evaluation-module"></span><h2>src.evaluation.profit_evaluation module<a class="headerlink" href="#module-src.evaluation.profit_evaluation" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.evaluation.profit_evaluation.SMA_buy">
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">SMA_buy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sma</span></em>, <em class="sig-param"><span class="n">batched_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.SMA_buy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.profit_evaluation.batch_eval">
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">batch_eval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">price_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.batch_eval" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.profit_evaluation.best_transactions_on_test_data">
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">best_transactions_on_test_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">buy</span></em>, <em class="sig-param"><span class="n">sell</span></em>, <em class="sig-param"><span class="n">batched_test_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.best_transactions_on_test_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.profit_evaluation.find_best_transactions">
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">find_best_transactions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">price_list_batch</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.find_best_transactions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.profit_evaluation.get_predicted">
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">get_predicted</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.get_predicted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the different types of batched data necessary to complete best_transactions and SMA. Global parameters
+BATCH_SIZE_TEST determine size of SMA-window, while BATCH_SIZE determine size of predicted best_transaction window.
+BATCH_SIZE should be the same size as lookahead for most realistic results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> – path to csv-file containing columns corresponding to predicted data and real data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>batched_pred, flat_pred, batched_test_sma, batched_test_pred, flat_test</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.profit_evaluation.main">
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.profit_evaluation.simple_moving_average">
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">simple_moving_average</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">predicted_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.simple_moving_average" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.evaluation.run_models">
+<span id="src-evaluation-run-models-module"></span><h2>src.evaluation.run_models module<a class="headerlink" href="#module-src.evaluation.run_models" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.evaluation.run_models.main">
+<code class="sig-prename descclassname">src.evaluation.run_models.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">save_result</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.run_models.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a single round of tests across all models with paramaters specified in config. If config is not used as function
+parameter, the function will default to config in tests.json.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – specifiable config-dict, will default to standard if not specified.</p></li>
+<li><p><strong>save_result</strong> – specify if you want results saved to results.json or not.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.run_models.optimal_profit">
+<code class="sig-prename descclassname">src.evaluation.run_models.</code><code class="sig-name descname">optimal_profit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.run_models.optimal_profit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all models on the specified datasets, calculate the profits, run RF on the all of datasets and finally
+generate tables based on the profit-results and save it with under documentation/latex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.run_models.purge_old">
+<code class="sig-prename descclassname">src.evaluation.run_models.</code><code class="sig-name descname">purge_old</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.run_models.purge_old" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the entire documentation directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.run_models.run_multiple">
+<code class="sig-prename descclassname">src.evaluation.run_models.</code><code class="sig-name descname">run_multiple</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.run_models.run_multiple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Purge the old results and run all of the tests required for a full results.json and profit-evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.evaluation.run_models.state_test">
+<code class="sig-prename descclassname">src.evaluation.run_models.</code><code class="sig-name descname">state_test</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.run_models.state_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train and calculate accuracy of a wide range of random-states for random forest. Will append results to existing
+results.json</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> – specifiable config-dict, will default to standard if not specified.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.evaluation">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.evaluation" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Stocks</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Seb and Jan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/src.evaluation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

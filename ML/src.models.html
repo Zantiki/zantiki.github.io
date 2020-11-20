@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>src.models package &#8212; Stocks 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="src-models-package">
+<h1>src.models package<a class="headerlink" href="#src-models-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.models.cnn_training">
+<span id="src-models-cnn-training-module"></span><h2>src.models.cnn_training module<a class="headerlink" href="#module-src.models.cnn_training" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.models.cnn_training.main">
+<code class="sig-prename descclassname">src.models.cnn_training.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'AMZN_2010-10-01_2020-10-01_2020-10-29.csv'</span></em>, <em class="sig-param"><span class="n">features_to_include</span><span class="o">=</span><span class="default_value">['Close', 'Open', 'High', 'Low', 'Volume']</span></em>, <em class="sig-param"><span class="n">save_plots</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">loss</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.cnn_training.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.models.cnn_training.split_data_as_tensors">
+<code class="sig-prename descclassname">src.models.cnn_training.</code><code class="sig-name descname">split_data_as_tensors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scaled_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.cnn_training.split_data_as_tensors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split the dataset into train and test sets
+:param scaled_data:
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.models.cnn_training.train">
+<code class="sig-prename descclassname">src.models.cnn_training.</code><code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">x_train</span></em>, <em class="sig-param"><span class="n">y_train</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.cnn_training.train" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.models.gru_training">
+<span id="src-models-gru-training-module"></span><h2>src.models.gru_training module<a class="headerlink" href="#module-src.models.gru_training" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.models.gru_training.main">
+<code class="sig-prename descclassname">src.models.gru_training.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'AMZN_2010-10-01_2020-10-01_2020-10-29.csv'</span></em>, <em class="sig-param"><span class="n">features_to_include</span><span class="o">=</span><span class="default_value">['Close', 'Open', 'High', 'Low']</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">save_plots</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">loss</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.gru_training.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.models.gru_training.split_data_as_tensors">
+<code class="sig-prename descclassname">src.models.gru_training.</code><code class="sig-name descname">split_data_as_tensors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scaled_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.gru_training.split_data_as_tensors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split the dataset into train and test sets
+:param scaled_data:
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.models.gru_training.train">
+<code class="sig-prename descclassname">src.models.gru_training.</code><code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.gru_training.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the supplied model with input x on data y
+:param model: The untrained model
+:param x: training input
+:param y: actual values
+:return: None</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.models.model_utils">
+<span id="src-models-model-utils-module"></span><h2>src.models.model_utils module<a class="headerlink" href="#module-src.models.model_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.models.model_utils.get_data_from_csv">
+<code class="sig-prename descclassname">src.models.model_utils.</code><code class="sig-name descname">get_data_from_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">included_features</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">data_points</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.model_utils.get_data_from_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get wanted data from a given csv</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – The CSV to read the files from</p></li>
+<li><p><strong>included_features</strong> – What features you want included in the dataset</p></li>
+<li><p><strong>data_points</strong> – Number of datapoints you want in the set, will take x most recent ones</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(selected_attribute, time_index)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.models.model_utils.get_documentation_root_subdir">
+<code class="sig-prename descclassname">src.models.model_utils.</code><code class="sig-name descname">get_documentation_root_subdir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">subdir</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; os.path<a class="headerlink" href="#src.models.model_utils.get_documentation_root_subdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a specified sub-directory and a filename, will greate the subdirectory if it does not exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subdir</strong> – the name of the wanted subdirectory</p></li>
+<li><p><strong>filename</strong> – the name of the filename you want under the subdirectory.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the path to the file within the subdirectory</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.models.model_utils.output_to_csv">
+<code class="sig-prename descclassname">src.models.model_utils.</code><code class="sig-name descname">output_to_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">test_scaler</span><span class="p">:</span> <span class="n">sklearn.preprocessing._data.minmax_scale</span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">predicted_output</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">test_data</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.model_utils.output_to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will write rescaled predicted and test data to a csv for later profit-evaluation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_scaler</strong> – the scaler to turn normalized prices back to USD.</p></li>
+<li><p><strong>model</strong> – The name of the model where the data was predicted</p></li>
+<li><p><strong>filename</strong> – the filename of the dataset used for testing/training</p></li>
+<li><p><strong>predicted_output</strong> – the predicted normalized data as a np.array</p></li>
+<li><p><strong>test_data</strong> – the predicted normalized data as a np.array</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.models.model_utils.plot_loss">
+<code class="sig-prename descclassname">src.models.model_utils.</code><code class="sig-name descname">plot_loss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_type</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">loss_list</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">accuracy</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.model_utils.plot_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the loss of a given model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_type</strong> – the type of model trained</p></li>
+<li><p><strong>loss_list</strong> – the losses at the different epochs</p></li>
+<li><p><strong>filename</strong> – the filname of the dataset used for training</p></li>
+<li><p><strong>accuracy</strong> – final accuracy of the model</p></li>
+<li><p><strong>save</strong> – save the model under documentation/plots</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.models.model_utils.plot_result">
+<code class="sig-prename descclassname">src.models.model_utils.</code><code class="sig-name descname">plot_result</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_type</span></em>, <em class="sig-param"><span class="n">y_pred</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">times</span><span class="p">:</span> <span class="n">numpy.datetime_data</span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">accuracy</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.model_utils.plot_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot and show accuracy on trained model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_type</strong> – name of the model where the values were predicted</p></li>
+<li><p><strong>y_pred</strong> – predicted output</p></li>
+<li><p><strong>y</strong> – expected output</p></li>
+<li><p><strong>times</strong> – the time-index of the test-data</p></li>
+<li><p><strong>filename</strong> – the dataset used</p></li>
+<li><p><strong>accuracy</strong> – the accuracy of the model</p></li>
+<li><p><strong>save</strong> – Whether or not to save the plot under documentation/plots</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.models.model_utils.save_model">
+<code class="sig-prename descclassname">src.models.model_utils.</code><code class="sig-name descname">save_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_type</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">torch.nn.modules.module.Module</span></em>, <em class="sig-param"><span class="n">data_filename</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">accuracy</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.model_utils.save_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a trained model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_type</strong> – the type of model</p></li>
+<li><p><strong>model</strong> – the model object</p></li>
+<li><p><strong>data_filename</strong> – the filename of the dataset trained on</p></li>
+<li><p><strong>accuracy</strong> – the final accuracy of the model</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.models.models">
+<span id="src-models-models-module"></span><h2>src.models.models module<a class="headerlink" href="#module-src.models.models" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.models.models.CNN">
+<em class="property">class </em><code class="sig-prename descclassname">src.models.models.</code><code class="sig-name descname">CNN</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">points_in_lookback</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.models.CNN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Two layered convolutional network that scales in accordance to specified input-features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lookback</strong> – the size of the lookback, i.e length of each x.</p></li>
+<li><p><strong>conv</strong> – First convolutional layer, splits features into 64 sets and has a kernel-size of 5.</p></li>
+<li><p><strong>pool</strong> – First max-pool, kernel-size of 1</p></li>
+<li><p><strong>conv2</strong> – Second convolutional layer, 64 in-channels, 128 out with kernel size 5.</p></li>
+<li><p><strong>pool2</strong> – Second max-pool with kernel-size 1.</p></li>
+<li><p><strong>dense</strong> – Dense-layer for determining output.</p></li>
+<li><p><strong>criterion</strong> – Torch MSELoss object.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="src.models.models.CNN.accuracy">
+<code class="sig-name descname">accuracy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_pred</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.models.models.CNN.accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the R2 score for predicted and expected y-values.
+:param y_pred: predicted y-values
+:param y: expected y-values
+:return: the computed R2-score</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.models.models.CNN.f">
+<code class="sig-name descname">f</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em><span class="sig-paren">)</span> &#x2192; None._VariableFunctionsClass.tensor<a class="headerlink" href="#src.models.models.CNN.f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply convolution on x and return a predicted values.
+:param x: input-data.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.models.models.CNN.logits">
+<code class="sig-name descname">logits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em><span class="sig-paren">)</span> &#x2192; None._VariableFunctionsClass.tensor<a class="headerlink" href="#src.models.models.CNN.logits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the convolution-layers on a given tensor
+:param x: the tensor to apply the convolution
+:return: x after convolution.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.models.models.CNN.loss">
+<code class="sig-name descname">loss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em><span class="sig-paren">)</span> &#x2192; torch.nn.modules.loss.MSELoss<a class="headerlink" href="#src.models.models.CNN.loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the loss and return the criterion for back-propagation during training.
+:param x: input-data
+:param y: expected output.
+:return: torch.nn.MSELoss object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="src.models.models.CNN.training">
+<code class="sig-name descname">training</code><em class="property">: bool</em><a class="headerlink" href="#src.models.models.CNN.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="src.models.models.GRU">
+<em class="property">class </em><code class="sig-prename descclassname">src.models.models.</code><code class="sig-name descname">GRU</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_dim</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">hidden_dim</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">num_layers</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">output_dim</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.models.GRU" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Layered GRU network where number of layers, input-dimension, output-dimension
+and size of hidden-matrix is defined by user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hidden_dim</strong> – the size of the hidden-matrix</p></li>
+<li><p><strong>num_layers</strong> – the number of gru-layers you want applied</p></li>
+<li><p><strong>gru</strong> – the torch.nn.GRU object, with the layers applied</p></li>
+<li><p><strong>fc</strong> – torch.nn.Linear activation-function</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="src.models.models.GRU.accuracy">
+<code class="sig-name descname">accuracy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.models.GRU.accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict y and compute R2 score based on real y.
+:param x: input-tensor
+:param y: expected output as np.array
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.models.models.GRU.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.models.GRU.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply one step of all the layers and return output.
+:param x: input-data tensor
+:return: predicted output.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="src.models.models.GRU.training">
+<code class="sig-name descname">training</code><em class="property">: bool</em><a class="headerlink" href="#src.models.models.GRU.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="src.models.models.RandomForest">
+<em class="property">class </em><code class="sig-prename descclassname">src.models.models.</code><code class="sig-name descname">RandomForest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">random_state</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.models.RandomForest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Wrapper class for sklearn.ensemble.RandomForestRegressor to store state of “trained” classifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>classifier</strong> – The RF-regressor initialized with specified number of trees.</p></li>
+<li><p><strong>model</strong> – The fitted RF-regressor. Is none before train is called.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="src.models.models.RandomForest.accuracy">
+<code class="sig-name descname">accuracy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.models.models.RandomForest.accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute and return the accuracy of the model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – input-data</p></li>
+<li><p><strong>y</strong> – expected output</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the R2-accuracy of the model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.models.models.RandomForest.get_model">
+<code class="sig-name descname">get_model</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; sklearn.ensemble._forest.RandomForestRegressor<a class="headerlink" href="#src.models.models.RandomForest.get_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.models.models.RandomForest.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span> &#x2192; numpy.array<a class="headerlink" href="#src.models.models.RandomForest.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the predicted data on given input-data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – input-data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>predicted values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.models.models.RandomForest.train">
+<code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.models.RandomForest.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the classifier
+:param x: input-data
+:param y: expected output
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.models.rf_training">
+<span id="src-models-rf-training-module"></span><h2>src.models.rf_training module<a class="headerlink" href="#module-src.models.rf_training" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.models.rf_training.main">
+<code class="sig-prename descclassname">src.models.rf_training.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'AAPL_2010-10-01_2020-10-01_2020-10-29.csv'</span></em>, <em class="sig-param"><span class="n">features_to_include</span><span class="o">=</span><span class="default_value">['Close', 'Open', 'High', 'Low', 'Volume']</span></em>, <em class="sig-param"><span class="n">save_plots</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.rf_training.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.models.rf_training.split_data_as_np">
+<code class="sig-prename descclassname">src.models.rf_training.</code><code class="sig-name descname">split_data_as_np</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scaled_data</span></em>, <em class="sig-param"><span class="n">number_of_features</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.rf_training.split_data_as_np" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split the dataset into train and test sets
+:param scaled_data:
+:return:</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.models" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Stocks</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Seb and Jan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/src.models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

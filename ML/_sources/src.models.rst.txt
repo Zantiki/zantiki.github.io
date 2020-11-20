@@ -1,0 +1,53 @@
+src.models package
+==================
+
+Submodules
+----------
+
+src.models.cnn\_training module
+-------------------------------
+
+.. automodule:: src.models.cnn_training
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+src.models.gru\_training module
+-------------------------------
+
+.. automodule:: src.models.gru_training
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+src.models.model\_utils module
+------------------------------
+
+.. automodule:: src.models.model_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+src.models.models module
+------------------------
+
+.. automodule:: src.models.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+src.models.rf\_training module
+------------------------------
+
+.. automodule:: src.models.rf_training
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: src.models
+   :members:
+   :undoc-members:
+   :show-inheritance:

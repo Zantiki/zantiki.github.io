@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>src.data package &#8212; Stocks 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="src-data-package">
+<h1>src.data package<a class="headerlink" href="#src-data-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.data.data">
+<span id="src-data-data-module"></span><h2>src.data.data module<a class="headerlink" href="#module-src.data.data" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.data.data.read_json">
+<code class="sig-prename descclassname">src.data.data.</code><code class="sig-name descname">read_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.data.data.read_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and parse the data-generation paramters from the data.json file.
+These paramaters are primary used to add/remove features when fetching from yfinance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tickers, start, end, period, interval, auto_adjust, prepost, time_specific, threads</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.data.data.use_history">
+<code class="sig-prename descclassname">src.data.data.</code><code class="sig-name descname">use_history</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.data.data.use_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch data from yfinance using the specified paramaterers in data.json and generate the data_csvs directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.data.data_utils">
+<span id="src-data-data-utils-module"></span><h2>src.data.data_utils module<a class="headerlink" href="#module-src.data.data_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.data.data_utils.add_stock_variance">
+<code class="sig-prename descclassname">src.data.data_utils.</code><code class="sig-name descname">add_stock_variance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">csv</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.data.data_utils.add_stock_variance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate, append and save a csv file with the calculated variance. The new file has the same name as the
+one in the argument, with _var at the end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>csv</strong> – Original stock-csv path</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.data.data_utils.append_features_from_csv">
+<code class="sig-prename descclassname">src.data.data_utils.</code><code class="sig-name descname">append_features_from_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">csv_to_append</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">csv_original</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.data.data_utils.append_features_from_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a time-indexed csv of equal length of a specified stock csv, will append the first csv to the stock file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>csv_to_append</strong> – path to the data-csv to append</p></li>
+<li><p><strong>csv_original</strong> – stock-csv path to append to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.data.data_utils.join_stock_csvs">
+<code class="sig-prename descclassname">src.data.data_utils.</code><code class="sig-name descname">join_stock_csvs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">csv1</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">csv2</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.data.data_utils.join_stock_csvs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will join two time-indexed stock csvs into one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>csv1</strong> – the first stock-csv path</p></li>
+<li><p><strong>csv2</strong> – the second stock-csv path</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.data.data_utils.purge_csvs">
+<code class="sig-prename descclassname">src.data.data_utils.</code><code class="sig-name descname">purge_csvs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.data.data_utils.purge_csvs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the entire data_csvs directory, used when regenerating the data-set</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.data">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.data" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Stocks</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Seb and Jan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/src.data.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
