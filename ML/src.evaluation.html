@@ -6,17 +6,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>src.evaluation package &#8212; Stocks 1.0 documentation</title>
-    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../static/alabaster.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="../static/documentation_options.js"></script>
-    <script src="../static/jquery.js"></script>
-    <script src="../static/underscore.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/language_data.js"></script>
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
+    <script src="static/jquery.js"></script>
+    <script src="static/underscore.js"></script>
+    <script src="static/doctools.js"></script>
+    <script src="static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
-  <link rel="stylesheet" href="../static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -218,33 +218,81 @@ latex-figure-string using the generated plot.</p>
 <span id="src-evaluation-profit-evaluation-module"></span><h2>src.evaluation.profit_evaluation module<a class="headerlink" href="#module-src.evaluation.profit_evaluation" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="src.evaluation.profit_evaluation.SMA_buy">
-<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">SMA_buy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sma</span></em>, <em class="sig-param"><span class="n">batched_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.SMA_buy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">SMA_buy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sma</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">batched_data</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span> &#x2192; tuple<a class="headerlink" href="#src.evaluation.profit_evaluation.SMA_buy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use simple mean average to determine transaction (buy, hold, sell) the day after a window (BATCH_SIZE_TEST), on a
+2d-list of bached data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sma</strong> – List of averages from a Simple Mean Average</p></li>
+<li><p><strong>batched_data</strong> – 2d-list</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>cummulative profit, list of profit per period</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.evaluation.profit_evaluation.batch_eval">
-<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">batch_eval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">price_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.batch_eval" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">batch_eval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">price_list</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.batch_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run method find_best_transactions on each batch in 2d-list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>price_list</strong> – 2d-list with length of elements = BATCH_SIZE, each element is one period (e.g. 5-day week).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.evaluation.profit_evaluation.best_transactions_on_test_data">
-<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">best_transactions_on_test_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">buy</span></em>, <em class="sig-param"><span class="n">sell</span></em>, <em class="sig-param"><span class="n">batched_test_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.best_transactions_on_test_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">best_transactions_on_test_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">buy</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">sell</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">batched_test_data</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.best_transactions_on_test_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes best_buy_days and best_sell_days (result from method find_best_transactions), and buy and sell on
+batched_test_data according to these</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buy</strong> – list of optimal days to buy, from method find_best_transactions</p></li>
+<li><p><strong>sell</strong> – list of optimal days to sell, from method find_best_transactions</p></li>
+<li><p><strong>batched_test_data</strong> – 2d-list where elements has length = BATCH_SIZE. Corresponds to periods (e.g. 5-day week)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>cummulative profit from each transaction</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.evaluation.profit_evaluation.find_best_transactions">
-<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">find_best_transactions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">price_list_batch</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.find_best_transactions" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">find_best_transactions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">price_list_batch</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.find_best_transactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the two days in each time period (BATCH_SIZE) in batched price list, which gives biggest difference in profit.
+First day is best day to buy, and second day is best day to but (buy day &lt; sell day). Global lists best_buy_days
+and best_sell_days are updated with corresponding values on same index.
+(suboptimal as time-complexity is o(n²))</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>price_list_batch</strong> – list with length = BATCH_SIZE. Corresponds to a period (e.g. 5-day week) in</p>
+</dd>
+</dl>
+<p>which to buy once and sell once
+:return: None</p>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.evaluation.profit_evaluation.get_predicted">
 <code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">get_predicted</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.get_predicted" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the different types of batched data necessary to complete best_transactions and SMA. Global parameters
+<dd><p>Get the different types of batched data necessary to complete best_transactions and falt data to compute SMA. Global
+parameters
 BATCH_SIZE_TEST determine size of SMA-window, while BATCH_SIZE determine size of predicted best_transaction window.
 BATCH_SIZE should be the same size as lookahead for most realistic results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file</strong> – path to csv-file containing columns corresponding to predicted data and real data</p>
+<dd class="field-odd"><p><strong>file</strong> – path to (output)-csv-file containing columns corresponding to predicted data and real data</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>batched_pred, flat_pred, batched_test_sma, batched_test_pred, flat_test</p>
@@ -254,13 +302,31 @@ BATCH_SIZE should be the same size as lookahead for most realistic results.</p>
 
 <dl class="py function">
 <dt id="src.evaluation.profit_evaluation.main">
-<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.main" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Driver program for predicted profits and SMA profits</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – the name of the output-csvs</p>
+</dd>
+<dt class="field-even">Return y_pred, d</dt>
+<dd class="field-even"><p>predicted profits and SMA profits</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.evaluation.profit_evaluation.simple_moving_average">
-<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">simple_moving_average</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">predicted_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.evaluation.profit_evaluation.simple_moving_average" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">src.evaluation.profit_evaluation.</code><code class="sig-name descname">simple_moving_average</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">predicted_data</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#src.evaluation.profit_evaluation.simple_moving_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate a simple mean averages, with window size = BATC_SIZE_TEST</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>predicted_data</strong> – 1d-list of stock prices</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of averages over periods = BATCH_SIZE_TEST (global variable)</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-src.evaluation.run_models">
@@ -393,7 +459,7 @@ results.json</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../sources/src.evaluation.rst.txt"
+      <a href="sources/src.evaluation.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

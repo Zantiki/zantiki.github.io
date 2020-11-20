@@ -6,17 +6,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>src.models package &#8212; Stocks 1.0 documentation</title>
-    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../static/alabaster.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="../static/documentation_options.js"></script>
-    <script src="../static/jquery.js"></script>
-    <script src="../static/underscore.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/language_data.js"></script>
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
+    <script src="static/jquery.js"></script>
+    <script src="static/underscore.js"></script>
+    <script src="static/doctools.js"></script>
+    <script src="static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
-  <link rel="stylesheet" href="../static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -40,46 +40,81 @@
 <span id="src-models-cnn-training-module"></span><h2>src.models.cnn_training module<a class="headerlink" href="#module-src.models.cnn_training" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="src.models.cnn_training.main">
-<code class="sig-prename descclassname">src.models.cnn_training.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'AMZN_2010-10-01_2020-10-01_2020-10-29.csv'</span></em>, <em class="sig-param"><span class="n">features_to_include</span><span class="o">=</span><span class="default_value">['Close', 'Open', 'High', 'Low', 'Volume']</span></em>, <em class="sig-param"><span class="n">save_plots</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">loss</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.cnn_training.main" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.models.cnn_training.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'SPY_2010-10-01_2020-10-01_2020-10-29.csv'</span></em>, <em class="sig-param"><span class="n">features_to_include</span><span class="o">=</span><span class="default_value">['Close', 'Open', 'High', 'Low', 'Volume']</span></em>, <em class="sig-param"><span class="n">save_plots</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">loss</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.cnn_training.main" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="src.models.cnn_training.split_data_as_tensors">
-<code class="sig-prename descclassname">src.models.cnn_training.</code><code class="sig-name descname">split_data_as_tensors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scaled_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.cnn_training.split_data_as_tensors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Split the dataset into train and test sets
-:param scaled_data:
-:return:</p>
+<code class="sig-prename descclassname">src.models.cnn_training.</code><code class="sig-name descname">split_data_as_tensors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scaled_data</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.cnn_training.split_data_as_tensors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split the dataset into train and test sets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>scaled_data</strong> – data of included features as dataframe</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>x-values in training data, y-values in training data, x-values in test data, y-values in test data</p>
+</dd>
+</dl>
+<p>(all tensors)</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="src.models.cnn_training.train">
-<code class="sig-prename descclassname">src.models.cnn_training.</code><code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">x_train</span></em>, <em class="sig-param"><span class="n">y_train</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.cnn_training.train" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">src.models.cnn_training.</code><code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">torch.nn.modules.module.Module</span></em>, <em class="sig-param"><span class="n">x_train</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em>, <em class="sig-param"><span class="n">y_train</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.cnn_training.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the supplied model with input x on data y</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – untrained model-object</p></li>
+<li><p><strong>x_train</strong> – x-values of training data (tensor)</p></li>
+<li><p><strong>y_train</strong> – y-values of training data (tensor)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution time, loss history</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-src.models.gru_training">
 <span id="src-models-gru-training-module"></span><h2>src.models.gru_training module<a class="headerlink" href="#module-src.models.gru_training" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="src.models.gru_training.main">
-<code class="sig-prename descclassname">src.models.gru_training.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'AMZN_2010-10-01_2020-10-01_2020-10-29.csv'</span></em>, <em class="sig-param"><span class="n">features_to_include</span><span class="o">=</span><span class="default_value">['Close', 'Open', 'High', 'Low']</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">save_plots</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">loss</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.gru_training.main" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.models.gru_training.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'SPY_2010-10-01_2020-10-01_2020-10-29.csv'</span></em>, <em class="sig-param"><span class="n">features_to_include</span><span class="o">=</span><span class="default_value">['Close', 'Open', 'High', 'Low', 'Volume']</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">save_plots</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">loss</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.gru_training.main" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="src.models.gru_training.split_data_as_tensors">
-<code class="sig-prename descclassname">src.models.gru_training.</code><code class="sig-name descname">split_data_as_tensors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scaled_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.gru_training.split_data_as_tensors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Split the dataset into train and test sets
-:param scaled_data:
-:return:</p>
+<code class="sig-prename descclassname">src.models.gru_training.</code><code class="sig-name descname">split_data_as_tensors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scaled_data</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.gru_training.split_data_as_tensors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split the dataset into train and test sets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>scaled_data</strong> – data of included features as dataframe</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>x-values in training data, y-values in training data, x-values in test data, y-values in test data</p>
+</dd>
+</dl>
+<p>(all tensors)</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="src.models.gru_training.train">
-<code class="sig-prename descclassname">src.models.gru_training.</code><code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.gru_training.train" title="Permalink to this definition">¶</a></dt>
-<dd><p>Train the supplied model with input x on data y
-:param model: The untrained model
-:param x: training input
-:param y: actual values
-:return: None</p>
+<code class="sig-prename descclassname">src.models.gru_training.</code><code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">torch.nn.modules.module.Module</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.gru_training.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the supplied model with input x on data y</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The untrained model-object</p></li>
+<li><p><strong>x</strong> – x-values of training data (tensor)</p></li>
+<li><p><strong>y</strong> – y-values of training data (tensor)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution time, loss history</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -225,35 +260,63 @@
 <dl class="py method">
 <dt id="src.models.models.CNN.accuracy">
 <code class="sig-name descname">accuracy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_pred</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.models.models.CNN.accuracy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute the R2 score for predicted and expected y-values.
-:param y_pred: predicted y-values
-:param y: expected y-values
-:return: the computed R2-score</p>
+<dd><p>Compute the R2 score for predicted and expected y-values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_pred</strong> – predicted y-values</p></li>
+<li><p><strong>y</strong> – expected y-values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the computed R2-score</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="src.models.models.CNN.f">
 <code class="sig-name descname">f</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em><span class="sig-paren">)</span> &#x2192; None._VariableFunctionsClass.tensor<a class="headerlink" href="#src.models.models.CNN.f" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply convolution on x and return a predicted values.
-:param x: input-data.
-:return:</p>
+<dd><p>Apply convolution on x and return a predicted values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – input-data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>x-tensor with applied logits</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="src.models.models.CNN.logits">
 <code class="sig-name descname">logits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em><span class="sig-paren">)</span> &#x2192; None._VariableFunctionsClass.tensor<a class="headerlink" href="#src.models.models.CNN.logits" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply the convolution-layers on a given tensor
-:param x: the tensor to apply the convolution
-:return: x after convolution.</p>
+<dd><p>Apply the convolution-layers on a given tensor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – the tensor to apply the convolution</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>x after convolution.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="src.models.models.CNN.loss">
 <code class="sig-name descname">loss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em><span class="sig-paren">)</span> &#x2192; torch.nn.modules.loss.MSELoss<a class="headerlink" href="#src.models.models.CNN.loss" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute the loss and return the criterion for back-propagation during training.
-:param x: input-data
-:param y: expected output.
-:return: torch.nn.MSELoss object.</p>
+<dd><p>Compute the loss and return the criterion for back-propagation during training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – input-data</p></li>
+<li><p><strong>y</strong> – expected output.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>torch.nn.MSELoss object.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
@@ -282,18 +345,32 @@ and size of hidden-matrix is defined by user</p>
 <dl class="py method">
 <dt id="src.models.models.GRU.accuracy">
 <code class="sig-name descname">accuracy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.models.GRU.accuracy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Predict y and compute R2 score based on real y.
-:param x: input-tensor
-:param y: expected output as np.array
-:return: None</p>
+<dd><p>Predict y and compute R2 score based on real y.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – input-tensor</p></li>
+<li><p><strong>y</strong> – expected output as np.array</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="src.models.models.GRU.forward">
 <code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">None._VariableFunctionsClass.tensor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.models.GRU.forward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply one step of all the layers and return output.
-:param x: input-data tensor
-:return: predicted output.</p>
+<dd><p>Apply one step of all the layers and return output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – input-data tensor</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>predicted output.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
@@ -355,10 +432,18 @@ and size of hidden-matrix is defined by user</p>
 <dl class="py method">
 <dt id="src.models.models.RandomForest.train">
 <code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">numpy.array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.models.RandomForest.train" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fit the classifier
-:param x: input-data
-:param y: expected output
-:return: None</p>
+<dd><p>Fit the classifier</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – input-data</p></li>
+<li><p><strong>y</strong> – expected output</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -373,10 +458,17 @@ and size of hidden-matrix is defined by user</p>
 
 <dl class="py function">
 <dt id="src.models.rf_training.split_data_as_np">
-<code class="sig-prename descclassname">src.models.rf_training.</code><code class="sig-name descname">split_data_as_np</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scaled_data</span></em>, <em class="sig-param"><span class="n">number_of_features</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.rf_training.split_data_as_np" title="Permalink to this definition">¶</a></dt>
-<dd><p>Split the dataset into train and test sets
-:param scaled_data:
-:return:</p>
+<code class="sig-prename descclassname">src.models.rf_training.</code><code class="sig-name descname">split_data_as_np</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scaled_data</span><span class="p">:</span> <span class="n">numpy.array</span></em>, <em class="sig-param"><span class="n">number_of_features</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.models.rf_training.split_data_as_np" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split the dataset into train and test sets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>scaled_data</strong> – data of included features as dataframe</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>x-values in training data, y-values in training data, x-values in test data, y-values in test data</p>
+</dd>
+</dl>
+<p>(all tensors)</p>
 </dd></dl>
 
 </div>
@@ -440,7 +532,7 @@ and size of hidden-matrix is defined by user</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../sources/src.models.rst.txt"
+      <a href="sources/src.models.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
